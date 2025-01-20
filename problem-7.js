@@ -23,9 +23,8 @@ function generatePrimesUpTo(n) {
 }
 
 function estimateIntegerGreaterThanYPrimes(y) {
-  // y = x/ln(x) where x is an increasingly large natural integer, y is the number of primes up to that number
-  // update the guessed integer by increasing it regularly.
   let numberOfPrimesEstimated = 0;
+  // we know that the integer will be greater than the given number of primes, so we start with y as our first guess.
   let currentIntGuess = y;
   const bounds = {
     upper: NaN,
@@ -35,8 +34,9 @@ function estimateIntegerGreaterThanYPrimes(y) {
     }
   };
   while (true) {
+    // y = x/ln(x) where x is an increasingly large natural integer, y is the number of primes up to that number
     numberOfPrimesEstimated = currentIntGuess / Math.log(currentIntGuess);
-
+    
     if (numberOfPrimesEstimated > y + 100) {
       bounds.upper = currentIntGuess;
       currentIntGuess = bounds.halfway();
